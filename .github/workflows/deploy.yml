@@ -30,17 +30,26 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Pre-DNS preview: build with basePath=/pavankumar.com so the site
-      # works at pavankumarkolla-prof.github.io/pavankumar.com/.
-      # Post-DNS (custom domain active): unset PAGES_PREVIEW in repo variables
-      # and the site will build for root + write CNAME.
-      - name: Build
+      # PRE-DNS PREVIEW MODE (current):
+      #   site serves at pavankumarkolla-prof.github.io/pavankumar.com/
+      #   next.config uses basePath=/pavankumar.com, no CNAME written.
+      #
+      # POST-DNS PRODUCTION MODE (flip when DNS is live):
+      #   1. Set repo variable PAGES_PRODUCTION=1
+      #      (Settings -> Secrets and variables -> Actions -> Variables tab -> New)
+      #   2. Re-run this workflow.
+      - name: Build (preview mode)
+        if: ${{ vars.PAGES_PRODUCTION != '1' }}
         run: npm run build
         env:
-          PAGES_PREVIEW: ${{ vars.PAGES_PREVIEW || '1' }}
+          PAGES_PREVIEW: "1"
 
-      - name: Add CNAME (only when serving at custom domain root)
-        if: ${{ vars.PAGES_PREVIEW == '' }}
+      - name: Build (production mode)
+        if: ${{ vars.PAGES_PRODUCTION == '1' }}
+        run: npm run build
+
+      - name: Add CNAME (production only)
+        if: ${{ vars.PAGES_PRODUCTION == '1' }}
         run: echo "pavankumar.com" > out/CNAME
 
       - name: Upload artifact
