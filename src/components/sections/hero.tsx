@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/data";
 import { ArrowDown } from "lucide-react";
 import { GitHubIcon, LinkedInIcon, GoogleScholarIcon } from "@/components/ui/icons";
 
-const titleWords = "Pavan Kumar.".split(" ");
+const titleWords = "Pavan Kumar Kolla.".split(" ");
 
 export function Hero() {
   return (

@@ -17,29 +17,29 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pavan Kumar | Software Architect & AI Researcher",
+  title: "Pavan Kumar Kolla | Software Architect & AI Researcher",
   description:
     "Software Architect, AI Researcher, and Technology Leader. Designing enterprise-grade systems at the intersection of cloud platforms, applied AI, and scalable architecture.",
   keywords: [
-    "Pavan Kumar",
+    "Pavan Kumar Kolla",
     "Software Architect",
     "AI Researcher",
     "Cloud Architecture",
     "Salesforce",
     "Enterprise Architecture",
   ],
-  authors: [{ name: "Pavan Kumar" }],
+  authors: [{ name: "Pavan Kumar Kolla" }],
   openGraph: {
-    title: "Pavan Kumar | Software Architect & AI Researcher",
+    title: "Pavan Kumar Kolla | Software Architect & AI Researcher",
     description:
       "Designing enterprise-grade systems at the intersection of cloud platforms, applied AI, and scalable architecture.",
     url: "https://pavankumar.com",
-    siteName: "Pavan Kumar",
+    siteName: "Pavan Kumar Kolla",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pavan Kumar | Software Architect & AI Researcher",
+    title: "Pavan Kumar Kolla | Software Architect & AI Researcher",
     description:
       "Designing enterprise-grade systems at the intersection of cloud platforms, applied AI, and scalable architecture.",
   },
@@ -63,7 +63,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Pavan Kumar",
+              name: "Pavan Kumar Kolla",
               url: "https://pavankumar.com",
               jobTitle: "Senior Software Architect",
               knowsAbout: [

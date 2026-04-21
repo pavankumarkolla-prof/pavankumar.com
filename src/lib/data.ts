@@ -1,6 +1,6 @@
 export const siteConfig = {
-  name: "Pavan Kumar",
-  title: "Pavan Kumar",
+  name: "Pavan Kumar Kolla",
+  title: "Pavan Kumar Kolla",
   description:
     "Software Architect, AI Researcher, and Technology Leader. Designing enterprise-grade systems at the intersection of cloud platforms, applied AI, and scalable architecture.",
   url: "https://pavankumar.com",
