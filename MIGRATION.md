@@ -82,13 +82,35 @@ GoDaddy DNS is updated.
 
 5. Save. DNS propagation: 5 minutes to 1 hour.
 
-### Then tell GitHub the domain is ready
+### Then flip the site from preview mode to production mode
 
-After DNS propagates:
+After DNS propagates, two things have to happen in this order:
+
+**Step 1 — flip the build to production mode.**
+The repo is currently building in *preview* mode, which hard-codes
+`basePath=/pavankumar.com` so the site works at the long github.io URL
+(see `next.config.ts` + `.github/workflows/deploy.yml`). That basePath
+breaks everything once the site is served at the root of a custom domain,
+so it must be removed before DNS goes live.
+
+1. Go to https://github.com/pavankumarkolla-prof/pavankumar.com/settings/variables/actions
+2. Click **New repository variable**
+3. Name: `PAGES_PRODUCTION` | Value: `1`
+4. Re-run the latest workflow from the Actions tab (or push any commit)
+
+The workflow reads this variable, skips the `PAGES_PREVIEW=1` env, and
+writes `out/CNAME` so GitHub recognizes the custom domain.
+
+**Step 2 — tell GitHub the domain is ready.**
 1. Go to https://github.com/pavankumarkolla-prof/pavankumar.com/settings/pages
 2. Under "Custom domain", enter `pavankumar.com` → Save
-3. GitHub will verify DNS (green check appears)
+3. GitHub verifies DNS (green check appears)
 4. Once verified, check "Enforce HTTPS" (may take ~24h for the Let's Encrypt cert)
+
+**Step 3 — verify the long github.io URL now 404s or redirects.**
+`pavankumarkolla-prof.github.io/pavankumar.com/` should no longer serve
+a working site once custom domain is in play. If it still works, something
+is wrong; check that PAGES_PRODUCTION was read correctly.
 
 ### Verifying propagation (command line)
 
