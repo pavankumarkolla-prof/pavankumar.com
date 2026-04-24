@@ -5,6 +5,7 @@ export const siteConfig = {
     "Software Architect, AI Researcher, and Technology Leader. Designing enterprise-grade systems at the intersection of cloud platforms, applied AI, and scalable architecture.",
   url: "https://pavankumar.com",
   ogImage: "/og.png",
+  githubUsername: "pavankumarkolla",
   links: {
     github: "https://github.com/pavankumarkolla",
     linkedin: "https://linkedin.com/in/pavankumarkolla",
@@ -13,11 +14,21 @@ export const siteConfig = {
   },
 };
 
+export const metrics = [
+  { value: 8, suffix: "+", label: "Years Engineering", hint: "Enterprise software & architecture" },
+  { value: 15, suffix: "+", label: "Systems Shipped", hint: "Production Salesforce, cloud & AI systems" },
+  { value: 5, suffix: "", label: "Salesforce Orgs", hint: "Architected across Dev / QA / UAT / Prod" },
+  { value: 1, suffix: "", label: "Published Papers", hint: "Peer-reviewed research" },
+  { value: 40, suffix: "+", label: "Automations Built", hint: "Apex, LWC, Python pipelines" },
+  { value: 100, suffix: "%", label: "Solo Ownership", hint: "Architecture → code → deploy" },
+];
+
 export const navItems = [
   { name: "About", href: "#about" },
   { name: "Experience", href: "#experience" },
   { name: "Publications", href: "#publications" },
   { name: "Projects", href: "#projects" },
+  { name: "GitHub", href: "#github" },
   { name: "Contact", href: "#contact" },
 ];
 

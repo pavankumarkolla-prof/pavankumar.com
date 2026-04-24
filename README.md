@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# pavankumar.com
 
-## Getting Started
+Personal site for **Pavan Kumar Kolla** — Software Architect, AI Researcher, Technology Leader.
 
-First, run the development server:
+Next.js 16 · React 19 · Tailwind v4 · Framer Motion · TypeScript · static export to GitHub Pages.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Sections (in order)
+
+1. **Hero** — name, subtitle, social links, particle field background.
+2. **Impact metrics band** — six animated counters (years, systems shipped, orgs, papers, automations, ownership). Edit values in `src/lib/data.ts` → `metrics`.
+3. **About** — bio + skills list.
+4. **Experience** — roles and highlights.
+5. **Publications** — paper list with abstracts.
+6. **Projects** — active and in-progress work.
+7. **GitHub** — live data pulled from the GitHub REST API: profile card, activity heatmap (20 weeks, built from `/events/public`), language breakdown across non-fork repos, top 6 repos by stars. Results cached in `sessionStorage` for 1 hour so the 60-req/hr unauth limit is never an issue.
+8. **Contact** — email + socials.
+
+## Interactive shell
+
+Every page has a persistent overlay shell (see `src/components/ui/overlay-shell.tsx`) that adds:
+
+| Shortcut | Action |
+| --- | --- |
+| `⌘K` / `Ctrl+K` | Command palette — fuzzy search over navigation, actions, and links |
+| `⌘J` / `` ` `` | Interactive terminal (REPL) |
+| `Esc` | Close either overlay |
+
+**Command palette** (`src/components/ui/command-palette.tsx`) groups entries into Navigate / Actions / Links. Supports ↑↓, Enter, hover selection, and live query filtering with token matching.
+
+**Terminal** (`src/components/ui/terminal.tsx`) — a real-ish shell with command history (`↑`/`↓`), tab completion, `Ctrl+L` clear, and commands:
+
+```
+help whoami skills projects papers experience
+github linkedin contact email
+ls cd <section>
+neofetch sudo echo date clear exit
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Floating dock in the bottom-right exposes both without needing to know the shortcut.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev     # dev server (Turbopack)
+npm run build   # static export → ./out
+npm run lint    # eslint
+```
 
-## Learn More
+## Deploy
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Preview at pavankumarkolla-prof.github.io/pavankumar.com/
+PAGES_PREVIEW=1 npm run build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Production at https://pavankumar.com (no basePath)
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`next.config.ts` sets `output: "export"`, so `./out` is a fully static site. Any dynamic behaviour (GitHub fetch, palette, terminal) is client-only.
 
-## Deploy on Vercel
+## Where to edit
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Change | File |
+| --- | --- |
+| Bio, socials, nav, metrics, skills, experience, publications, projects | `src/lib/data.ts` |
+| GitHub username | `siteConfig.githubUsername` in `src/lib/data.ts` |
+| Colors / gradients / card shadow | `src/app/globals.css` |
+| Add a new terminal command | `mkCommands` in `src/components/ui/terminal.tsx` |
+| Add a palette entry | `commands` array in `src/components/ui/command-palette.tsx` |
